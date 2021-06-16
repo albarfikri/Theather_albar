@@ -1,2 +1,3 @@
 rootProject.name = "Theater"
 include ':app'
+include ':core'
