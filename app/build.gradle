@@ -18,6 +18,10 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField("String", "API_TOKEN", '"3cfb4b02a797fb614c1ad62d6b1b09c9"')
+        buildConfigField("String", "API_URL", '"https://api.themoviedb.org/3/"')
+        buildConfigField("String", "IMAGE_URL", '"https://image.tmdb.org/t/p/w500"')
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,6 +41,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    dynamicFeatures = [':favorite']
 }
 
 dependencies {
