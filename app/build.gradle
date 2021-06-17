@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-parcelize'
+    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
@@ -18,11 +18,11 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField("String", "apiKey", '"3cfb4b02a797fb614c1ad62d6b1b09c9"')
-        buildConfigField("String", "apiUrl", '"https://api.themoviedb.org/3/"')
-        buildConfigField("String", "imageUrl", '"https://image.tmdb.org/t/p/w500"')
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_KEY", '"3cfb4b02a797fb614c1ad62d6b1b09c9"')
+        buildConfigField("String", "API_URL", '"https://api.themoviedb.org/3/"')
+        buildConfigField("String", "IMAGE_URL", '"https://image.tmdb.org/t/p/w500"')
     }
 
     buildTypes {
