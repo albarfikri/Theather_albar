@@ -9,7 +9,7 @@ class LocalDataSource(private val movieDao: MovieDao) {
 
     fun getFavMovie(): Flow<List<MovieEntity>> = movieDao.getFavMovies()
 
-    suspend fun insertFavMovie(movieEntity: List<MovieEntity>) =
+    suspend fun insertMovies(movieEntity: List<MovieEntity>) =
         movieDao.insertFavMovie(movieEntity)
 
     fun setFavMovie(movieEntity: MovieEntity, newState: Boolean) {

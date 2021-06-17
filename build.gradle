@@ -14,15 +14,16 @@ buildscript {
     ext.recyclerview_version = "1.1.0"
     ext.material_version = "1.2.1"
     ext.glide_version = "4.11.0"
+    ext.shimmer_version = "0.5.0"
+    ext.material_search_view_version = "1.4.0"
+    ext.ken_burns_version = "1.0.7"
+    ext.bubble_navigation_version = "1.0.7"
 
     ext.room_version = "2.2.5"
-
     ext.retrofit_version = "2.9.0"
     ext.logging_interceptor_version = '4.9.0'
-
     ext.kotlin_coroutines_version = "1.3.9"
     ext.lifecycle_version = "2.2.0"
-
     ext.koin_version = "2.1.6"
 
 

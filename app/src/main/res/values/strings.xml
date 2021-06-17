@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Theater</string>
     <string name="title_favorite">Favorite</string>
+    <string name="image_description">Poster Path</string>
+    <string name="original_title">Wrath of Man</string>
+    <string name="release_date">2021-04-22</string>
+    <string name="vote_average">8.6</string>
+    <string name="search">Search movies....</string>
 </resources>

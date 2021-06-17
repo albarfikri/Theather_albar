@@ -13,9 +13,24 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
 
-    //koin
+    // CircularProgressBar
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
+
+    // Searching
+    implementation "com.miguelcatalan:materialsearchview:$material_search_view_version"
+
+    // Koin
     implementation "org.koin:koin-core:$koin_version"
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     androidTestImplementation "org.koin:koin-test:$koin_version"
+
+    // Shimmer
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+
+    // Flaviofaria (moving images)
+    implementation "com.flaviofaria:kenburnsview:$ken_burns_version"
+
+    // Bubble Navigation
+    implementation "com.gauravk.bubblenavigation:bubblenavigation:$bubble_navigation_version"
 }
