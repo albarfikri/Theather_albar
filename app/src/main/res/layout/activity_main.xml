@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/grey_500"
     tools:context=".main.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -41,7 +41,7 @@
         android:id="@+id/frameContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationContainer"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
@@ -50,12 +50,12 @@
         android:layout_width="0dp"
         android:layout_height="6dp"
         android:background="@drawable/main_background"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationContainer"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.gauravk.bubblenavigation.BubbleNavigationConstraintView
-        android:id="@+id/bottomNavigationContainer"
+        android:id="@+id/bottomNavContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey_200"
@@ -79,7 +79,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btFavorite"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/bottomNavigationContainer" />
+            app:layout_constraintTop_toTopOf="@id/bottomNavContainer" />
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/btFavorite"
@@ -94,6 +94,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btMovies"
-            app:layout_constraintTop_toTopOf="@id/bottomNavigationContainer" />
+            app:layout_constraintTop_toTopOf="@id/bottomNavContainer" />
     </com.gauravk.bubblenavigation.BubbleNavigationConstraintView>
 </androidx.constraintlayout.widget.ConstraintLayout>
