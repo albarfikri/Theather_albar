@@ -80,7 +80,7 @@ class MoviesFragment : Fragment() {
     }
 
     private fun setSearchQueryList() {
-        searchViewModel.getSearchResult.observe(viewLifecycleOwner, { searchData ->
+        searchViewModel.getSearchResult.observe(viewLifecycleOwner) { searchData ->
             Log.d("Testing", searchData.toString())
             if (searchData.isNullOrEmpty()) {
                 setStatus(Status.ERROR)
@@ -88,7 +88,7 @@ class MoviesFragment : Fragment() {
                 setStatus(Status.SUCCESS)
             }
             movieAdapter.setData(searchData)
-        })
+        }
 
         searchView.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
             override fun onSearchViewShown() {
@@ -110,7 +110,7 @@ class MoviesFragment : Fragment() {
                 startActivity(intent)
             }
 
-            movieViewModel.movie.observe(viewLifecycleOwner, { movieData ->
+            movieViewModel.movie.observe(viewLifecycleOwner) { movieData ->
                 if (movieData != null) {
                     when (movieData) {
                         is Resource.Loading -> setStatus(Status.LOADING)
@@ -129,7 +129,7 @@ class MoviesFragment : Fragment() {
                         }
                     }
                 }
-            })
+            }
 
             with(binding.rvMovies) {
                 layoutManager = LinearLayoutManager(context)
@@ -173,8 +173,11 @@ class MoviesFragment : Fragment() {
         }
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        searchView.setOnQueryTextListener(null)
+        searchView.setOnSearchViewListener(null)
+        binding.rvMovies.adapter = null
+        _binding = null
+    }
 }

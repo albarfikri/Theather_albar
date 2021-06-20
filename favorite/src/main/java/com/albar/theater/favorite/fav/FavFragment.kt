@@ -1,6 +1,8 @@
 package com.albar.theater.favorite.fav
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.albar.theater.core.ui.MoviesAdapter
 import com.albar.theater.detail.DetailActivity
+import com.albar.theater.favorite.R
 import com.albar.theater.favorite.databinding.FragmentFavBinding
 import com.albar.theater.favorite.di.favModule
 import com.albar.theater.utils.Status
@@ -22,7 +25,6 @@ class FavFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val favViewModel: FavViewModel by viewModel()
-    private lateinit var adapter: MoviesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,14 +51,14 @@ class FavFragment : Fragment() {
                 startActivity(intent)
             }
 
-            favViewModel.favMovie.observe(viewLifecycleOwner, { favData ->
+            favViewModel.favMovie.observe(viewLifecycleOwner) { favData ->
                 if (favData.isNullOrEmpty()) {
                     setStatus(Status.ERROR)
                 } else {
                     setStatus(Status.SUCCESS)
                 }
                 movieAdapter.setData(favData)
-            })
+            }
 
             with(binding.rvMovies) {
                 layoutManager = LinearLayoutManager(context)
@@ -93,5 +95,10 @@ class FavFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

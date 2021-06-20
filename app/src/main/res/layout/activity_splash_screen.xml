@@ -29,7 +29,7 @@
         android:fontFamily="@font/happy_lucky"
         android:text="@string/movie_show"
         android:textColor="@color/white"
-        android:textSize="38sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="@+id/animationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"

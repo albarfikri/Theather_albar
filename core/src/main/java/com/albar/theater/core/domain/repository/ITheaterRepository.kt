@@ -5,7 +5,6 @@ import com.albar.theater.core.domain.model.MovieModel
 import kotlinx.coroutines.flow.Flow
 
 interface ITheaterRepository {
-
     fun getAllMovies(): Flow<Resource<List<MovieModel>>>
 
     fun getFavMovies(): Flow<List<MovieModel>>

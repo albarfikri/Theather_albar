@@ -8,7 +8,11 @@ import com.albar.theater.R
 import com.albar.theater.databinding.ActivityMainBinding
 import com.albar.theater.movies.MoviesFragment
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -20,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         onNavigationChange(MoviesFragment())
         onNavigationSelected()
-
     }
 
     private fun onNavigationSelected() {

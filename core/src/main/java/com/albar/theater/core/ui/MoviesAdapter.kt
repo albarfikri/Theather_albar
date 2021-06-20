@@ -28,7 +28,6 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
         return MovieViewHolder(itemMovieListBinding)
     }
 
-
     override fun onBindViewHolder(holder: MoviesAdapter.MovieViewHolder, position: Int) {
         val data = listData[position]
         holder.bind(data)
@@ -49,6 +48,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
                 tvVoteAverageCircle.progress = movie.voteAverage?.toFloat()!!
             }
         }
+
         init {
             binding.root.setOnClickListener {
                 onItemClick?.invoke(listData[adapterPosition])

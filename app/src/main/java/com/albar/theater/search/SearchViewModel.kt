@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.*
 class SearchViewModel(private val theaterUseCase: TheaterUseCase) : ViewModel() {
     private val channel = ConflatedBroadcastChannel<String>()
 
-
     fun setQuery(keywords: String) {
         channel.offer(keywords)
     }

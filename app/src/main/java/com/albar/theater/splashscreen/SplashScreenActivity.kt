@@ -1,9 +1,8 @@
 package com.albar.theater.splashscreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.albar.theater.R
+import androidx.appcompat.app.AppCompatActivity
 import com.albar.theater.databinding.ActivitySplashScreenBinding
 import com.albar.theater.main.MainActivity
 

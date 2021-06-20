@@ -49,7 +49,7 @@ class TheaterRepository(
     }
 
     override fun getSearch(keywords: String): Flow<List<MovieModel>> {
-        return localDataSource.getSearch(keywords).map{
+        return localDataSource.getSearch(keywords).map {
             DataMapper.mapEntitiesToDomain(it)
         }
     }
