@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="@string/no_data"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textColor="@color/white"
         android:fontFamily="@font/avenir_bold"
         app:layout_constraintEnd_toEndOf="parent"

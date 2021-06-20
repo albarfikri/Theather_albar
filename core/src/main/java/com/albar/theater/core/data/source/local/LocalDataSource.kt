@@ -20,5 +20,9 @@ class LocalDataSource(private val movieDao: MovieDao) {
         movieDao.updateFavMovie(movieEntity)
     }
 
-
+    fun getSearch(search: String): Flow<List<MovieEntity>> {
+        return movieDao.getSearch(search)
+            .flowOn(Dispatchers.Default)
+            .conflate()
+    }
 }

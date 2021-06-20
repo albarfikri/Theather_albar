@@ -2,7 +2,9 @@ package com.albar.theater.movies
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,16 +14,23 @@ import com.albar.theater.core.ui.MoviesAdapter
 import com.albar.theater.databinding.FragmentMoviesBinding
 import com.albar.theater.detail.DetailActivity
 import com.albar.theater.main.MainActivity
+import com.albar.theater.search.SearchViewModel
 import com.albar.theater.utils.Status
 import com.google.android.material.snackbar.Snackbar
 import com.miguelcatalan.materialsearchview.MaterialSearchView
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import org.koin.android.viewmodel.ext.android.viewModel
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 class MoviesFragment : Fragment() {
     private var _binding: FragmentMoviesBinding? = null
     private lateinit var searchView: MaterialSearchView
     private val binding get() = _binding!!
+    private lateinit var movieAdapter: MoviesAdapter
     private val movieViewModel: MoviesViewModel by viewModel()
+    private val searchViewModel: SearchViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +44,10 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.title = "Movies"
+        movieAdapter = MoviesAdapter()
         retrieveAllMovies()
+        searchQuery()
+        setSearchQueryList()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -44,9 +56,54 @@ class MoviesFragment : Fragment() {
         searchView.setMenuItem(menuItem)
     }
 
+    private fun searchQuery() {
+        searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(keywords: String?): Boolean {
+                keywords?.let { searchViewModel.setQuery(it) }
+                if (keywords != null) {
+                    if (keywords.isNotEmpty()) {
+                        Toast.makeText(
+                            context,
+                            keywords,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                setStatus(Status.LOADING)
+                return true
+            }
+        })
+    }
+
+    private fun setSearchQueryList() {
+        searchViewModel.getSearchResult.observe(viewLifecycleOwner, { searchData ->
+            Log.d("Testing", searchData.toString())
+            if (searchData.isNullOrEmpty()) {
+                setStatus(Status.ERROR)
+            } else {
+                setStatus(Status.SUCCESS)
+            }
+            movieAdapter.setData(searchData)
+        })
+
+        searchView.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
+            override fun onSearchViewShown() {
+                setStatus(Status.SUCCESS)
+            }
+
+            override fun onSearchViewClosed() {
+                setStatus(Status.SUCCESS)
+                retrieveAllMovies()
+            }
+        })
+    }
+
     private fun retrieveAllMovies() {
         if (activity != null) {
-            val movieAdapter = MoviesAdapter()
             movieAdapter.onItemClick = { selectedData ->
                 val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra(DetailActivity.extraData, selectedData)

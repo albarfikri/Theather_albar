@@ -11,4 +11,6 @@ interface ITheaterRepository {
     fun getFavMovies(): Flow<List<MovieModel>>
 
     fun setFavMovie(movieModel: MovieModel, state: Boolean)
+
+    fun getSearch(keywords: String): Flow<List<MovieModel>>
 }

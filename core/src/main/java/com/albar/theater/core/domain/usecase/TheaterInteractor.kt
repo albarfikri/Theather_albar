@@ -13,4 +13,6 @@ class TheaterInteractor(private val theaterRepository: ITheaterRepository) : The
     override fun setFavMovie(movieModel: MovieModel, state: Boolean) =
         theaterRepository.setFavMovie(movieModel, state)
 
+    override fun getSearch(keywords: String): Flow<List<MovieModel>> =
+        theaterRepository.getSearch(keywords)
 }

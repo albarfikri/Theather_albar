@@ -8,4 +8,5 @@ interface TheaterUseCase {
     fun getAllMovies(): Flow<Resource<List<MovieModel>>>
     fun getFavMovies(): Flow<List<MovieModel>>
     fun setFavMovie(movieModel: MovieModel, state: Boolean)
+    fun getSearch(keywords: String): Flow<List<MovieModel>>
 }

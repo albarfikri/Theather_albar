@@ -48,4 +48,9 @@ class TheaterRepository(
         appExecutors.diskIo().execute { localDataSource.setFavMovie(movieEntity, state) }
     }
 
+    override fun getSearch(keywords: String): Flow<List<MovieModel>> {
+        return localDataSource.getSearch(keywords).map{
+            DataMapper.mapEntitiesToDomain(it)
+        }
+    }
 }
