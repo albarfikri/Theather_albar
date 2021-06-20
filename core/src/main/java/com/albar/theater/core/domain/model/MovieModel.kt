@@ -5,16 +5,16 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MovieModel(
-    var id: Int? = null,
-    var backdropPath: String? = null,
-    var originalLanguage: String? = null,
-    var originalTitle: String? = null,
-    var overview: String? = null,
-    var popularity: Double? = null,
-    var posterPath: String? = null,
-    var releaseDate: String? = null,
-    var title: String? = null,
-    var voteAverage: Double? = null,
-    var voteCount: Int? = null,
+    var id: Int,
+    var backdropPath: String,
+    var originalLanguage: String,
+    var originalTitle: String,
+    var overview: String,
+    var popularity: Double,
+    var posterPath: String,
+    var releaseDate: String,
+    var title: String,
+    var voteAverage: Double,
+    var voteCount: Int,
     var isFavorite: Boolean = false
 ) : Parcelable

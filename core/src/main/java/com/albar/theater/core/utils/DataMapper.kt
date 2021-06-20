@@ -44,7 +44,7 @@ object DataMapper {
                     title,
                     voteAverage,
                     voteCount,
-                    isFavorite = false
+                    isFavorite = isFavorite
                 )
             }
         }
@@ -64,7 +64,7 @@ object DataMapper {
                 title,
                 voteAverage,
                 voteCount,
-                isFavorite = false
+                isFavorite = isFavorite
             )
         }
     }

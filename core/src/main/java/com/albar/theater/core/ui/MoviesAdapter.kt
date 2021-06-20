@@ -3,6 +3,7 @@ package com.albar.theater.core.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.albar.theater.core.BuildConfig
 import com.albar.theater.core.databinding.ItemMovieListBinding
 import com.albar.theater.core.domain.model.MovieModel
 import com.bumptech.glide.Glide
@@ -12,7 +13,6 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     var onItemClick: ((MovieModel) -> Unit)? = null
 
     fun setData(newListData: List<MovieModel>) {
-        if (newListData == null) return
         listData.clear()
         listData.addAll(newListData)
         notifyDataSetChanged()
@@ -41,7 +41,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
         fun bind(movie: MovieModel) {
             binding.apply {
                 Glide.with(itemView.context)
-                    .load(movie.posterPath)
+                    .load(BuildConfig.imageUrl + movie.posterPath)
                     .into(ivPosterPath)
                 tvOriginalTitle.text = movie.originalTitle
                 tvReleaseDate.text = movie.releaseDate
@@ -49,7 +49,6 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
                 tvVoteAverageCircle.progress = movie.voteAverage?.toFloat()!!
             }
         }
-
         init {
             binding.root.setOnClickListener {
                 onItemClick?.invoke(listData[adapterPosition])

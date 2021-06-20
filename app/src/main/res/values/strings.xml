@@ -8,4 +8,16 @@
     <string name="search">Search movies....</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_data">You don\'t have\nfavorite data yet</string>
+    <string name="loading">Loading..</string>
+    <string name="title">Title</string>
+    <string name="vote">Vote Average</string>
+    <string name="release">Release</string>
+    <string name="originalTitle_content">Zack Snyder\'s Justice League</string>
+    <string name="overview">Overview</string>
+    <string name="rating">Rating Score</string>
+    <string name="ratingContent">Vote Average : %s, Vote Count : %s, Popularity : %s</string>
+    <string name="overviewContent">Determined to ensure Superman\'s ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions.</string>
+    <string name="play">Play Now</string>
+    <string name="detail">Detail</string>
 </resources>

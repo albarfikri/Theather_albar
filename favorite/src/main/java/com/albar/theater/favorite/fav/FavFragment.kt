@@ -1,60 +1,97 @@
 package com.albar.theater.favorite.fav
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.albar.theater.favorite.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.albar.theater.core.ui.MoviesAdapter
+import com.albar.theater.detail.DetailActivity
+import com.albar.theater.favorite.databinding.FragmentFavBinding
+import com.albar.theater.favorite.di.favModule
+import com.albar.theater.utils.Status
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FavFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FavFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentFavBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val favViewModel: FavViewModel by viewModel()
+    private lateinit var adapter: MoviesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fav, container, false)
+    ): View {
+        _binding = FragmentFavBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FavFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FavFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadKoinModules(favModule)
+        setStatus(Status.LOADING)
+        retrieveAllFavMovies()
+        (activity as AppCompatActivity).supportActionBar?.title = "Favorite"
+    }
+
+    private fun retrieveAllFavMovies() {
+        if (activity != null) {
+            val movieAdapter = MoviesAdapter()
+            movieAdapter.onItemClick = { selectedData ->
+                val intent = Intent(activity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.extraData, selectedData)
+                startActivity(intent)
+            }
+
+            favViewModel.favMovie.observe(viewLifecycleOwner, { favData ->
+                if (favData.isNullOrEmpty()) {
+                    setStatus(Status.ERROR)
+                } else {
+                    setStatus(Status.SUCCESS)
+                }
+                movieAdapter.setData(favData)
+            })
+
+            with(binding.rvMovies) {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = movieAdapter
+            }
+        }
+    }
+
+    private fun setStatus(state: Status) {
+        when (state) {
+            Status.LOADING -> {
+                binding.apply {
+                    rvMovies.visibility = View.GONE
+                    progressBar.visibility = View.VISIBLE
+                    textNoData.visibility = View.GONE
+                    animationView.visibility = View.GONE
                 }
             }
+            Status.SUCCESS -> {
+                binding.apply {
+                    rvMovies.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE
+                    textNoData.visibility = View.GONE
+                    animationView.visibility = View.GONE
+                }
+            }
+            Status.ERROR -> {
+                binding.apply {
+                    rvMovies.visibility = View.GONE
+                    progressBar.visibility = View.GONE
+                    textNoData.visibility = View.VISIBLE
+                    animationView.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 }

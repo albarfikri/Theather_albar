@@ -33,4 +33,10 @@ dependencies {
 
     // Bubble Navigation
     implementation "com.gauravk.bubblenavigation:bubblenavigation:$bubble_navigation_version"
+
+    // Lottie for splash screen and not found icon
+    implementation "com.airbnb.android:lottie:3.6.1"
+
+    // Makerman
+    implementation "com.makeramen:roundedimageview:$riv_version"
 }

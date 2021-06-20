@@ -2,11 +2,20 @@ package com.albar.theater.di
 
 import com.albar.theater.core.domain.usecase.TheaterInteractor
 import com.albar.theater.core.domain.usecase.TheaterUseCase
+import com.albar.theater.detail.DetailViewModel
+import com.albar.theater.movies.MoviesViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    factory<TheaterUseCase> { TheaterInteractor(get())}
+    factory<TheaterUseCase> { TheaterInteractor(get()) }
 }
-val viewModelModule = module{
-//    viewModel{}
+
+@ExperimentalCoroutinesApi
+@FlowPreview
+val viewModelModule = module {
+    viewModel { MoviesViewModel(get()) }
+    viewModel { DetailViewModel(get()) }
 }

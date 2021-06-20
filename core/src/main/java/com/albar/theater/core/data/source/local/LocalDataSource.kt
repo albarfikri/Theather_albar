@@ -2,7 +2,10 @@ package com.albar.theater.core.data.source.local
 
 import com.albar.theater.core.data.source.local.entity.MovieEntity
 import com.albar.theater.core.data.source.local.room.MovieDao
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.flowOn
 
 class LocalDataSource(private val movieDao: MovieDao) {
     fun getAllMovies(): Flow<List<MovieEntity>> = movieDao.getAllMovies()
@@ -16,4 +19,6 @@ class LocalDataSource(private val movieDao: MovieDao) {
         movieEntity.isFavorite = newState
         movieDao.updateFavMovie(movieEntity)
     }
+
+
 }

@@ -38,7 +38,7 @@ class TheaterRepository(
         }.asFlow()
 
     override fun getFavMovies(): Flow<List<MovieModel>> {
-        return localDataSource.getAllMovies().map {
+        return localDataSource.getFavMovie().map {
             DataMapper.mapEntitiesToDomain(it)
         }
     }

@@ -10,37 +10,37 @@ data class MovieEntity(
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    var id: Int? = null,
+    var id: Int,
 
     @ColumnInfo(name = "backdrop_path")
-    var backdropPath: String? = null,
+    var backdropPath: String,
 
     @ColumnInfo(name = "original_language")
-    var originalLanguage: String? = null,
+    var originalLanguage: String,
 
     @ColumnInfo(name = "original_title")
-    var originalTitle: String? = null,
+    var originalTitle: String,
 
     @ColumnInfo(name = "overview")
-    var overview: String? = null,
+    var overview: String,
 
     @ColumnInfo(name = "popularity")
-    var popularity: Double? = null,
+    var popularity: Double,
 
     @ColumnInfo(name = "poster_path")
-    var posterPath: String? = null,
+    var posterPath: String,
 
     @ColumnInfo(name = "release_date")
-    var releaseDate: String? = null,
+    var releaseDate: String,
 
     @ColumnInfo(name = "title")
-    var title: String? = null,
+    var title: String,
 
     @ColumnInfo(name = "vote_average")
-    var voteAverage: Double? = null,
+    var voteAverage: Double,
 
     @ColumnInfo(name = "vote_count")
-    var voteCount: Int? = null,
+    var voteCount: Int,
 
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false
