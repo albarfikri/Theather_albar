@@ -45,7 +45,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
                 tvOriginalTitle.text = movie.originalTitle
                 tvReleaseDate.text = movie.releaseDate
                 tvVoteAverage.text = movie.voteAverage.toString()
-                tvVoteAverageCircle.progress = movie.voteAverage?.toFloat()!!
+                tvVoteAverageCircle.progress = movie.voteAverage.toFloat()
             }
         }
 

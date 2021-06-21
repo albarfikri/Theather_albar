@@ -92,7 +92,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun shareContent(detailMovie: MovieModel) {
-        val movieName: String = detailMovie.originalTitle.toString()
+        val movieName: String = detailMovie.originalTitle
         val urlImageMovie: String = BuildConfig.IMAGE_URL + detailMovie.posterPath
         val voteAverage: String = detailMovie.voteAverage.toString()
         val mimeType = "text/plain"

@@ -123,7 +123,7 @@ class MoviesFragment : Fragment() {
                             val view: View = requireActivity().findViewById(android.R.id.content)
                             Snackbar.make(
                                 view,
-                                "Something went wrong !",
+                                "Error, Check your connection !",
                                 Snackbar.LENGTH_SHORT
                             ).show()
                         }

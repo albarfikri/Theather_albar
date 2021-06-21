@@ -1,8 +1,6 @@
 package com.albar.theater.favorite.fav
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.albar.theater.core.ui.MoviesAdapter
 import com.albar.theater.detail.DetailActivity
-import com.albar.theater.favorite.R
 import com.albar.theater.favorite.databinding.FragmentFavBinding
 import com.albar.theater.favorite.di.favModule
 import com.albar.theater.utils.Status
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
-
 
 class FavFragment : Fragment() {
     private var _binding: FragmentFavBinding? = null
