@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_500"
-    tools:context=".splashscreen.SplashScreenActivity">
+    tools:context=".splashscreen.SplashScreenActivity"
+    tools:ignore="Overdraw">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
