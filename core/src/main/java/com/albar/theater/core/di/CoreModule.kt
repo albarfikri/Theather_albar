@@ -1,6 +1,7 @@
 package com.albar.theater.core.di
 
 import androidx.room.Room
+import com.albar.theater.core.BuildConfig
 import com.albar.theater.core.data.source.TheaterRepository
 import com.albar.theater.core.data.source.local.LocalDataSource
 import com.albar.theater.core.data.source.local.room.MovieDb
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<MovieDb>().movieDao() }
     single {
-        val passphrase: ByteArray = SQLiteDatabase.getBytes("albarfikri4".toCharArray())
+        val passphrase: ByteArray = SQLiteDatabase.getBytes(BuildConfig.PASSPHRASE.toCharArray())
         val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
@@ -37,7 +38,7 @@ val networkModule = module {
     single {
         val hostname = "api.themoviedb.org"
         val certificatePinner = CertificatePinner.Builder()
-            .add(hostname, "sha256/+vqZVAzTqUP8BGkfl88yU7SQ3C8J2uNEa55B7RZjEg0=")
+            .add(hostname, BuildConfig.PINNING)
             .build()
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
